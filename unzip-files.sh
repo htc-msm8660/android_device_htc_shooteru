@@ -1,4 +1,11 @@
-#!/bin/sh
+#/bin/sh
+
+UPDATE_PACKAGE=$1
+
+if [ "x$UPDATE_PACKAGE" = "x" ]; then
+    echo You must specify the update.zip as first argument
+    exit
+fi
 
 BASE=../../../vendor/htc/shooteru/proprietary
 rm -rf $BASE/*
@@ -8,7 +15,7 @@ for FILE in `egrep -v '(^#|^$)' proprietary-files.txt`; do
   if [ ! -d $BASE/$DIR ]; then
     mkdir -p $BASE/$DIR
   fi
-  adb pull system/$FILE $BASE/system/$FILE
+  unzip -j -o ${UPDATE_PACKAGE} system/$FILE -d $BASE/$DIR
 done
 
 ./setup-makefiles.sh
