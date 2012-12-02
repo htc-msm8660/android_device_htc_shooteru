@@ -54,6 +54,9 @@ BOARD_HTC_3D_SUPPORT := true
 # Bluetooth/Wifi
 -include device/htc/msm8660-common/bcmdhd.mk
 
+# RIL
+BOARD_USES_LEGACY_RIL := true
+
 # Custom LUN File Path
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
 
